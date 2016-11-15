@@ -1,0 +1,40 @@
+  [1m[36m (243.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (245.2ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateApplnInfos (20161115083331)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateApplnInfos (20161115083331)
+  [1m[35m (128.4ms)[0m  CREATE TABLE `appln_infos` (`id` int(11) auto_increment PRIMARY KEY, `appln_number` varchar(255), `appln_type` varchar(255), `appln_status` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (27.8ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (31.7ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20161115083331')
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCompanyInfos (20161115083602)
+  [1m[35m (328.1ms)[0m  CREATE TABLE `company_infos` (`id` int(11) auto_increment PRIMARY KEY, `appln_info_id` int(11), `company_name` varchar(255), `company_phone` varchar(255), `company_address` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_company_infos_on_appln_info_id`  (`appln_info_id`) ) ENGINE=InnoDB
+  [1m[36m (206.8ms)[0m  [1mALTER TABLE `company_infos` ADD CONSTRAINT `fk_rails_64e1f78087`
+FOREIGN KEY (`appln_info_id`)
+  REFERENCES `appln_infos` (`id`)
+[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20161115083602')[0m
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (49.9ms)[0m  SELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'test_model_specs_development'
+  AND fk.table_name = 'appln_infos'
+
+  [1m[36m (0.3ms)[0m  [1mSHOW CREATE TABLE `appln_infos`[0m
+  [1m[35m (0.3ms)[0m  SELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'test_model_specs_development'
+  AND fk.table_name = 'company_infos'
+
+  [1m[36m (0.2ms)[0m  [1mSHOW CREATE TABLE `company_infos`[0m

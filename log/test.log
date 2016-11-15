@@ -1,0 +1,16 @@
+  [1m[36m (49.2ms)[0m  [1mDROP DATABASE IF EXISTS `test_model_specs_test`[0m
+  [1m[35m (0.5ms)[0m  CREATE DATABASE `test_model_specs_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (91.5ms)[0m  [1mCREATE TABLE `appln_infos` (`id` int(11) auto_increment PRIMARY KEY, `appln_number` varchar(255), `appln_type` varchar(255), `appln_status` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (223.7ms)[0m  CREATE TABLE `company_infos` (`id` int(11) auto_increment PRIMARY KEY, `appln_info_id` int(11), `company_name` varchar(255), `company_phone` varchar(255), `company_address` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (291.2ms)[0m  [1mCREATE  INDEX `index_company_infos_on_appln_info_id` USING btree ON `company_infos` (`appln_info_id`) [0m
+  [1m[35m (181.2ms)[0m  ALTER TABLE `company_infos` ADD CONSTRAINT `fk_rails_64e1f78087`
+FOREIGN KEY (`appln_info_id`)
+  REFERENCES `appln_infos` (`id`)
+
+  [1m[36m (108.7ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (193.4ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36m (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20161115083602')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20161115083331')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
